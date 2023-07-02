@@ -19,10 +19,15 @@ export class MoviesService {
     query = `${URL}${query}`;
     console.log(query)
 
-    return this.http.get(query, {headers})
+    return this.http.get<AnswerMDB>(query, {headers})
   }
 
   getFeature() {
     return this.executeQuery<AnswerMDB>(`/movie/now_playing?language=es-ES&page=1`)
+  }
+
+  getPopulirity() {
+    const query= '/movie/popular?language=en-US&page=1';
+    return this.executeQuery<AnswerMDB>(query);
   }
 }

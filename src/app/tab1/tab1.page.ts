@@ -7,23 +7,22 @@ register();
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
-export class Tab1Page implements OnInit{
-
+export class Tab1Page implements OnInit {
   lastMovies: Movies[] = [];
+  popular: Movies[] = [];
 
-  constructor(
-    private movieService: MoviesService
-  ) {}
-
+  constructor(private movieService: MoviesService) {}
 
   ngOnInit(): void {
-    this.movieService.getFeature().subscribe((movie: any) => {
+    this.movieService.getFeature().subscribe((movie) => {
       this.lastMovies = movie.results;
-    })
+    });
+
+    this.movieService.getPopulirity().subscribe((resp) => {
+      console.log('populares ', resp);
+      this.popular = resp.results;
+    });
   }
-
-
-
 }
