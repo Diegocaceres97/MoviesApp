@@ -30,6 +30,8 @@
   </ion-row>
 </ion-grid>
 
-<app-slideshow-poster [peliculas]="popular"></app-slideshow-poster>
+<!-- <app-slideshow-poster [peliculas]="popular"></app-slideshow-poster> -->
+<app-slideshow-pares [peliculas]="popular"
+(moreMovies)="moreMovies()"></app-slideshow-pares>
 
 </ion-content>

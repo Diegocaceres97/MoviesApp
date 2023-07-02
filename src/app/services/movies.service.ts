@@ -11,6 +11,8 @@ const apiKey = environment.apiKey;
 })
 export class MoviesService {
 
+  private popularesPage = 0;
+
   constructor(private http: HttpClient) { }
 
   private executeQuery<T>(query: string){
@@ -27,7 +29,9 @@ export class MoviesService {
   }
 
   getPopulirity() {
-    const query= '/movie/popular?language=en-US&page=1';
+    this.popularesPage++;
+
+    const query= '/movie/popular?language=en-US&page='+this.popularesPage;
     return this.executeQuery<AnswerMDB>(query);
   }
 }
