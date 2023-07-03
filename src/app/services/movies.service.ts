@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AnswerMDB } from '../interfaces/interfaces';
+import { AnswerMDB, PeliculaDetalle, RespuestaCredits } from '../interfaces/interfaces';
 import { environment } from 'src/environments/environment';
 
 const URL = environment.url;
@@ -21,7 +20,7 @@ export class MoviesService {
     query = `${URL}${query}`;
     console.log(query)
 
-    return this.http.get<AnswerMDB>(query, {headers})
+    return this.http.get<T>(query, {headers})
   }
 
   getFeature() {
@@ -34,4 +33,15 @@ export class MoviesService {
     const query= '/movie/popular?language=en-US&page='+this.popularesPage;
     return this.executeQuery<AnswerMDB>(query);
   }
+
+  getDetailMovie(id: string) {
+    const query=`/movie/${id}language=en-US`;
+    return this.executeQuery<PeliculaDetalle>(query);
+  }
+
+  getActresslMovie(id: string) {
+    const query=`/movie/${id}/credits?language=en-US'`;
+    return this.executeQuery<RespuestaCredits>(query);
+  }
+
 }
