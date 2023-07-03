@@ -18,7 +18,6 @@ export class MoviesService {
     const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${apiKey}`);
     query = `${URL}${query}`;
-    console.log(query)
 
     return this.http.get<T>(query, {headers})
   }
@@ -42,6 +41,11 @@ export class MoviesService {
   getActresslMovie(id: string) {
     const query=`/movie/${id}/credits?language=en-US'`;
     return this.executeQuery<RespuestaCredits>(query);
+  }
+
+  getMovie(nameFilm: string){
+    const query=`/search/movie?query=${nameFilm}&include_adult=false&language=en-US&page=1`;
+    return this.executeQuery(query);
   }
 
 }
