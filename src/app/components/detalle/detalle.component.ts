@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PeliculaDetalle } from 'src/app/interfaces/interfaces';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Cast, PeliculaDetalle } from 'src/app/interfaces/interfaces';
 import { MoviesService } from 'src/app/services/movies.service';
+import { IonicSlides, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detalle',
@@ -11,9 +12,16 @@ export class DetalleComponent  implements OnInit {
 
   @Input() id: any;
   pelicula: PeliculaDetalle = {};
+  oculto=150;
+  actores: Cast[] = [];
+  slideOptsActores = {
+    initialSlide: 1,
+    speed: 400,
+  };
 
   constructor(
-    private movieService: MoviesService
+    private movieService: MoviesService,
+    private modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -24,9 +32,15 @@ export class DetalleComponent  implements OnInit {
     )
     this.movieService.getActresslMovie(this.id).subscribe(
       data => {
-        console.log(data)
+        this.actores=data.cast
       }
     )
   }
+
+  back() {
+    this.modalCtrl.dismiss();
+  }
+
+  fav() {}
 
 }
