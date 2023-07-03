@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
+  textoBuscar='';
+
   constructor() {}
+
+  search(event:any){
+    const valor = event.detail.value;
+  }
 
 }
