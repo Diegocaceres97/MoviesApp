@@ -28,9 +28,7 @@ export class Tab1Page implements OnInit {
   }
 
   getPopulares() {
-    console.log('entro')
     this.movieService.getPopulirity().subscribe((resp) => {
-      console.log(resp.results)
       const arrTemp = [...this.popular, ...resp.results];
       this.popular=arrTemp;
     });
