@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Cast, PeliculaDetalle } from 'src/app/interfaces/interfaces';
 import { MoviesService } from 'src/app/services/movies.service';
 import { IonicSlides, ModalController } from '@ionic/angular';
+import { DataLocalService } from 'src/app/services/data-local.service';
 
 @Component({
   selector: 'app-detalle',
@@ -21,7 +22,8 @@ export class DetalleComponent  implements OnInit {
 
   constructor(
     private movieService: MoviesService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private dataLocal: DataLocalService
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,8 @@ export class DetalleComponent  implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  fav() {}
+  fav() {
+    this.dataLocal.saveMovie(this.pelicula);
+  }
 
 }
